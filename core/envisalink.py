@@ -259,6 +259,8 @@ class Client(object):
                 self.send_command('040', partition + str(parameters['alarmcode']))
             else:
                 self.send_command('040', partition + str(config.ALARMCODE))
+        elif type == 'keystroke':
+                self.send_command('071', partition + str(parameters['sequence']))        
         elif type == 'refresh':
             self.send_command('001')
         elif type == 'ping':
@@ -274,4 +276,3 @@ class Client(object):
         except StreamClosedError:
             #we don't need to handle this, the callback has been set for closed connections.
             pass
-
